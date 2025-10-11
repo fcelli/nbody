@@ -2,13 +2,13 @@ use nalgebra::Vector2;
 
 use crate::physics::gravitational_acceleration_unit_mass;
 
-pub struct NBodySystem {
-    positions: Vec<Vector2<f64>>,
-    velocities: Vec<Vector2<f64>>,
-    masses: Vec<f64>,
+pub struct SystemState {
+    pub positions: Vec<Vector2<f64>>,
+    pub velocities: Vec<Vector2<f64>>,
+    pub masses: Vec<f64>,
 }
 
-impl NBodySystem {
+impl SystemState {
     pub fn new() -> Self {
         Self {
             positions: Vec::new(),

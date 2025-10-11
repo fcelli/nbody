@@ -1,17 +1,27 @@
 use nalgebra::Vector2;
 
-use crate::system::NBodySystem;
+use crate::{
+    integrators::{EulerIntegrator, Integrator},
+    system::SystemState,
+};
+use std::thread::sleep;
+use std::time::Duration;
 
+mod integrators;
 mod physics;
 mod system;
 
 fn main() {
-    let mut nbody_system = NBodySystem::new();
-    nbody_system.add_body(Vector2::new(0.0, 0.0), Vector2::new(0.0, 0.0), 1.0);
-    nbody_system.add_body(Vector2::new(1.0, 0.0), Vector2::new(0.0, 0.0), 1.0);
+    let mut state = SystemState::new();
+    state.add_body(Vector2::new(0.0, 0.0), Vector2::new(0.0, 0.0), 100.0);
+    state.add_body(Vector2::new(1.0, 0.0), Vector2::new(0.0, 10.0), 1.0);
 
-    let accelerations = nbody_system.compute_accelerations();
+    let integrator = EulerIntegrator;
 
-    println!("Number of bodies in the system: {}", nbody_system.len());
-    accelerations.iter().for_each(|x| println!("{}", x));
+    loop {
+        println!("{},\t{}", state.positions[1][0], state.positions[1][1]);
+        integrator.step(&mut state, 0.01);
+
+        sleep(Duration::from_millis(500));
+    }
 }
