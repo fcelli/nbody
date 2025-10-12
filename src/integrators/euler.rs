@@ -2,7 +2,9 @@ use super::Integrator;
 use crate::system::SystemState;
 
 /// Euler integrator
+///
 /// x_{i + 1} = x_i + v_i * dt
+///
 /// v_{i + 1} = v_i + a_i * dt
 pub struct EulerIntegrator;
 
