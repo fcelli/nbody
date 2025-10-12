@@ -1,6 +1,6 @@
 use nalgebra::Vector2;
 use nbody::{
-    integrators::{EulerIntegrator, Integrator},
+    integrators::{EulerCromerIntegrator, Integrator},
     system::SystemState,
 };
 use wasm_bindgen::prelude::*;
@@ -8,7 +8,7 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen]
 pub struct WasmSim {
     state: SystemState,
-    integrator: EulerIntegrator,
+    integrator: EulerCromerIntegrator,
 }
 
 #[wasm_bindgen]
@@ -22,7 +22,7 @@ impl WasmSim {
         state.add_body(Vector2::new(0.0, 3.0), Vector2::new(-4.0, 0.0), 1.0);
         Self {
             state,
-            integrator: EulerIntegrator,
+            integrator: EulerCromerIntegrator,
         }
     }
 
