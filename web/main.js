@@ -1,11 +1,11 @@
-import init, { WasmSim } from "./pkg/web.js";
+import init, { WasmSim, JsIntegratorType } from "./pkg/web.js";
 
 async function run() {
     // Load and initialize the WebAssembly binary (web_bg.wasm)
     await init();
 
     // Create simulation instance
-    const sim = new WasmSim();
+    const sim = new WasmSim(JsIntegratorType.Leapfrog);
 
     // Get reference to canvas and 2D context
     const canvas = document.getElementById("sim");

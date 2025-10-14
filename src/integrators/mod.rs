@@ -12,3 +12,10 @@ pub use rk4::RK4Integrator;
 pub trait Integrator {
     fn step(&self, state: &mut SystemState, dt: f64);
 }
+
+pub enum IntegratorType {
+    Euler,
+    EulerCromer,
+    RK4,
+    Leapfrog,
+}
